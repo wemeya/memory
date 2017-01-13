@@ -75,15 +75,14 @@
 
 <body>
   <header>
-    <h1 class="logo">Welcome to Beego</h1>
+    <h1 class="logo">Welcome to Memory</h1>
     <div class="description">
 	  <form method="POST">
 		<input type="text" name="password"> 
 	    <input type="submit" value="Submit">
 	  </form>
     </div>
-	<div class="description">
-	  <input type="text" name="result" value="{{.Result}}">
+	<div name="result" value="{{.Result}}">
 	</div>
   </header>
   <footer>

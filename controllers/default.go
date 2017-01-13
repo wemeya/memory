@@ -3,12 +3,13 @@ package controllers
 import (
 	"fmt"
 	"log"
+	"strings"
 	//	"memory/levenshtein"
 	"memory/models"
 
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
-	//	"github.com/mozillazg/go-pinyin"
+	"github.com/mozillazg/go-pinyin"
 )
 
 type MainController struct {
@@ -18,14 +19,14 @@ type MainController struct {
 //var enc = simplifiedchinese.GBK
 
 func (c *MainController) Get() {
-	c.Data["Website"] = "beego.me"
-	c.Data["Email"] = "astaxie@gmail.com"
+	c.Data["Website"] = "pku.edu.cn"
+	c.Data["Email"] = "wemeya@163.com"
 	c.TplName = "index.tpl"
 }
 
 func (c *MainController) Post() {
-	c.Data["Website"] = "beego.me"
-	c.Data["Email"] = "astaxie@gmail.com"
+	c.Data["Website"] = "pku.edu.cn"
+	c.Data["Email"] = "wemeya@163.com"
 	c.TplName = "index.tpl"
 
 	password := c.GetString("password")
@@ -39,42 +40,21 @@ func (c *MainController) Post() {
 		log.Fatal(err)
 	}
 	fmt.Println(num)
-	//	for i := 0; i < len(poets); i++ {
-	//		fmt.Println(poets[i].Content)
-	//		arg := pinyin.NewArgs()
-	//		arg.Style = pinyin.Initials
-	//		fmt.Println(pinyin.Pinyin(poets[i].Content, arg))
-	//	}
+	for i := 0; i < num; i++ {
 
-	//fmt.Println(o.Insert(user))*/
-	//	f, err := os.Open("sample.txt")
-	//	if err != nil {
-	//		log.Fatal(err)
-	//	}
-	//	r := transform.NewReader(f, enc.NewDecoder())
-	//	sc := bufio.NewScanner(r)
-	//	dis := 10000
-	//	poetry := ""
-	//	for sc.Scan() {
-	//		fmt.Println(sc.Text())
-	//		strs := pinyin.LazyPinyin(sc.Text(), pinyin.NewArgs())
-	//		var str string
-	//		for i := 0; i < len(strs); i++ {
-	//			str += strs[i]
-	//		}
-	//		distance := levenshtein.DistanceForStrings([]rune(password), []rune(str), levenshtein.DefaultOptions)
-	//		if distance < dis {
-	//			dis = distance
-	//			poetry = sc.Text()
-	//		}
-	//		fmt.Printf(`Distance between "%s" and "%s" computed as %d\n`, password, str, distance)
-	//	}
-	//	if err = sc.Err(); err != nil {
-	//		log.Fatal(err)
-	//	}
-	//	if err = f.Close(); err != nil {
-	//		log.Fatal(err)
-	//	}
+		content := poets[i].Content
+		contents := strings.Split(content, "。")
+		for j := 0; j < len(contents); j++ {
+			contentEach := strings.Split(contents[j], "，")
+			for k := 0; k < len(contentEach); k++ {
+				arg := pinyin.NewArgs()
+				arg.Style = pinyin.Initials
+				fmt.Println(pinyin.Pinyin(contentEach[k], arg))
+			}
+
+		}
+
+	}
 
 	//	c.Data["Result"] = poetry
 }
