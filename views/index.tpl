@@ -78,12 +78,21 @@
     <h1 class="logo">Welcome to Memory</h1>
     <div class="description">
 	  <form method="POST">
-		<input type="text" name="password"> 
-	    <input type="submit" value="Submit">
+		<input type="text" name="pin"> 
+	    <input type="submit" value="提交"><br><br>
+		映射模式：
+		<label><input type="radio" name="pattern" value="nomapped" checked>0,1不对应 </label>
+		<label><input type="radio" name="pattern" value="mapped"> 0对应o,1对应l</label>
+	
+		<br>
+		匹配策略：
+		<input type="radio" name="strategy" value="initial" checked> 首字母
+		<input type="radio" name="strategy" value="all"> 全拼
+		<input type="radio" name="strategy" value="similarity"> 相似度
 	  </form>
+		<br>
+	  <input type="text" placeholder="匹配结果" name="result" value="{{.Result}}">
     </div>
-	<div name="result" value="{{.Result}}">
-	</div>
   </header>
   <footer>
     <div class="author">
@@ -94,5 +103,8 @@
     </div>
   </footer>
   <div class="backdrop"></div>
+<!-- script>
+	window.alert("您的PIN输入不合法，请重新输入！")
+</script -->
 </body>
 </html>
